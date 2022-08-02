@@ -1,0 +1,12 @@
+.items {
+    
+    
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+
