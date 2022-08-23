@@ -1,14 +1,24 @@
 import { useState } from "react";
-import Portfolio from "../components/Portfolio";
+
 import CoinList from "../components/CoinList";
 import Button from "react-bootstrap/Button";
 import Header from "../components/Header";
 import Container from "react-bootstrap/Container";
+import AddTransaction from "../components/AddTransaction";
 
-const Transaction = () => {
+const ViewPortfolio = () => {
   const [coinsList, setCoinsList] = useState([]);
   const [price, setPrice] = useState();
   const [value, setValue] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const closeModalHandler = () => {
+    setModalOpen(false);
+  };
+
+  const openModalHandler = () => {
+    setModalOpen(true);
+  };
 
   async function saveTransaction(coin) {
     const respone = await fetch(
@@ -21,6 +31,7 @@ const Transaction = () => {
   }
 
   const addCoinHandler = (uName, uQuantity, uPreis) => {
+    setModalOpen(false);
     const roundPortValue = (Number(value) + uQuantity * uPreis).toFixed(2);
     setValue(roundPortValue);
     setCoinsList((prevCoinList) => {
@@ -43,11 +54,17 @@ const Transaction = () => {
     <div>
       <Header></Header>
       <Container>
-        <Portfolio onNewCoin={addCoinHandler} />
+        <AddTransaction
+          onNewCoin={addCoinHandler}
+          isModalOpen={modalOpen}
+          closeModal={closeModalHandler}
+        />
+
         <h2>Portfolio Value: {value} $</h2>
         <CoinList coins={coinsList} />
+        <Button onClick={openModalHandler}>Add</Button>
       </Container>
     </div>
   );
 };
-export default Transaction;
+export default ViewPortfolio;

@@ -3,21 +3,23 @@ import { BrowserRouter, Route, Routes, Redirect } from "react-router-dom";
 
 import logo from "./logo.svg";
 import "./App.css";
-import AddTransaction from "./components/Portfolio";
+
 import CoinList from "./components/CoinList";
 import Button from "react-bootstrap/Button";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
-import Transaction from "./pages/Transaction";
+import ViewPortfolio from "./pages/ViewPortfolio";
 import List from "./pages/List";
+import Transactions from "./pages/Transactions";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Transaction />} />
+          <Route path="/" exact element={<ViewPortfolio />} />
           <Route path="exchanges/*" element={<List />} />
+          <Route path="transactions/*" element={<Transactions />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,0 +1,16 @@
+.formInput {
+    width: 50%;
+    margin:auto;
+    margin-top: 1em;
+    
+  
+}
+
+
+.error {
+    color: red;
+}
+
+.centerButton {
+    margin: auto;
+}
