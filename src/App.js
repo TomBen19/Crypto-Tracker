@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, Redirect } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 
-import CoinList from "./components/CoinList";
+import CoinList from "./components/TransactionList";
 import Button from "react-bootstrap/Button";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";

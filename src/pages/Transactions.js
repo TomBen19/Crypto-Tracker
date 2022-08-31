@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import CoinList from "../components/CoinList";
+import TransactionList from "../components/TransactionList";
 import Button from "react-bootstrap/Button";
 import Header from "../components/Header";
 import Container from "react-bootstrap/Container";
@@ -20,11 +20,18 @@ const Transactions = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    if (coinsList != "") {
+      saveTransaction(coinsList[coinsList.length - 1]);
+    }
+  }, [coinsList]);
+
   async function saveTransaction(coin) {
     const respone = await fetch(
-      "https://crypto-tracker-c3d8d-default-rtdb.europe-west1.firebasedatabase.app/coins.json",
+      "https://crypto-tracker2-4493f-default-rtdb.firebaseio.com/.json",
       {
         method: "POST",
+
         body: JSON.stringify(coin),
       }
     );
@@ -60,7 +67,7 @@ const Transactions = () => {
           closeModal={closeModalHandler}
         />
 
-        <CoinList coins={coinsList} />
+        <TransactionList coins={coinsList} />
         <Button onClick={openModalHandler}>Add</Button>
       </Container>
     </div>

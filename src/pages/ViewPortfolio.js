@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import CoinList from "../components/CoinList";
+import CoinList from "../components/TransactionList";
 import Button from "react-bootstrap/Button";
 import Header from "../components/Header";
 import Container from "react-bootstrap/Container";
 import AddTransaction from "../components/AddTransaction";
+import PortfolioList from "../components/PortfolioList";
 
 const ViewPortfolio = () => {
   const [coinsList, setCoinsList] = useState([]);
@@ -20,11 +21,18 @@ const ViewPortfolio = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    if (coinsList != "") {
+      saveTransaction(coinsList[coinsList.length - 1]);
+    }
+  }, [coinsList]);
+
   async function saveTransaction(coin) {
     const respone = await fetch(
-      "https://crypto-tracker-c3d8d-default-rtdb.europe-west1.firebasedatabase.app/coins.json",
+      "https://crypto-tracker2-4493f-default-rtdb.firebaseio.com/.json",
       {
         method: "POST",
+
         body: JSON.stringify(coin),
       }
     );
@@ -34,6 +42,7 @@ const ViewPortfolio = () => {
     setModalOpen(false);
     const roundPortValue = (Number(value) + uQuantity * uPreis).toFixed(2);
     setValue(roundPortValue);
+    console.log(uQuantity);
     setCoinsList((prevCoinList) => {
       return [
         ...prevCoinList,
@@ -45,8 +54,8 @@ const ViewPortfolio = () => {
         },
       ];
     });
+    console.log(coinsList.length);
 
-    saveTransaction(coinsList[coinsList.length - 1]);
     console.log(coinsList[coinsList.length - 1]);
   };
 
@@ -61,7 +70,7 @@ const ViewPortfolio = () => {
         />
 
         <h2>Portfolio Value: {value} $</h2>
-        <CoinList coins={coinsList} />
+        <PortfolioList coins={coinsList} />
         <Button onClick={openModalHandler}>Add</Button>
       </Container>
     </div>

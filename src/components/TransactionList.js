@@ -1,9 +1,9 @@
-import classes from "./CoinList.module.css";
+import classes from "./TransactionList.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import Table from "react-bootstrap/Table";
 
-const CoinList = (props) => {
+const TransactionList = (props) => {
   return (
     <div>
       <Table striped bordered hover>
@@ -28,4 +28,4 @@ const CoinList = (props) => {
     </div>
   );
 };
-export default CoinList;
+export default TransactionList;
