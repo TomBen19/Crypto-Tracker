@@ -26,7 +26,6 @@ const PortfolioList = (props) => {
           ))}
         </tbody>
       </Table>
-      {x > 0 && <p>sd</p>}
     </div>
   );
 };

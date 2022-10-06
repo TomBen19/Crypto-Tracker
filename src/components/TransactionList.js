@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 
 const TransactionList = (props) => {
   return (
-    <div>
+    <div className={classes.container}>
       <Table striped bordered hover>
         <thead>
           <tr>
